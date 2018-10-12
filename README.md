@@ -1,5 +1,5 @@
-# aws-systems-manager-powershell-demo
-A project demonstrating AWS Systems Manager features using the AWSPowerShell SDK.
+# AWS Systems Manager PowerShell Demo
+A project demonstrating AWS Systems Manager Parameter Store, RunCommand, and Automation Documents using the AWSPowerShell SDK.
 
 This demo will create the following resources in your AWS Account:
 
@@ -18,6 +18,9 @@ Set-ParameterStoreValues.ps1
 ```
 
 ## Learn More with these Resources
+
+### Setting up the AWS Tools for PowerShell
+https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up-windows.html 
 
 ### AWS Systems Manager Console
 https://aws.amazon.com/systems-manager/
