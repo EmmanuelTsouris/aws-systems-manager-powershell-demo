@@ -10,15 +10,13 @@
 # you can find the download link on the vscode website.
 $downloadUrl = "https://go.microsoft.com/fwlink/?Linkid=852157"
 
-"https://go.microsoft.com/fwlink/?Linkid=852157"
-
 # Name and path for the downloaded file
 $installerFile = "vscode-install.exe"
 $installerDownloadPath = (Join-Path $env:TEMP $installerFile)
 
 # Install Options
 # Include the context menu, file association, and add to path options (and don't run code after install: 
-$installerArguments = "/verysilent /mergetasks='!runcode,addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath'"
+$installerArguments = '/verysilent /mergetasks=!runcode,addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath'
 
 Write-Host "Downloading $downloadUrl to $installerFile."
 Invoke-Webrequest $downloadUrl -UseBasicParsing -OutFile $installerDownloadPath
