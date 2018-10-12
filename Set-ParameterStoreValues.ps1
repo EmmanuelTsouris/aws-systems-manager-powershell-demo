@@ -5,7 +5,7 @@ $valuesJson = @"
 [
     {
         "Name": "/Test/AutomationDemo/ImageName",
-        "Value": "Developer-Image",
+        "Value": "Windows_Server-2016-CustomImage",
         "Description": "The name of our new image.",
         "Type": "String"
     },
