@@ -1,0 +1,41 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Install-VisualStudioCode",
+    "parameters": {
+        "DownloadUrl": {
+            "type": "String",
+            "description": "(Optional) Download URL for the VisualStudio Code installer.",
+            "default": "https://go.microsoft.com/fwlink/?Linkid=852157",
+            "maxChars": 256
+        }
+    },
+    "mainSteps": [
+        {
+            "name": "InstallVisualStudioCode",
+            "action": "aws:runPowerShellScript",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Windows"
+                ]
+            },
+            "inputs": {
+                "timeoutSeconds": 300,
+                "runCommand": [
+                    "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12",
+                    "Write-Host 'Beginning Visual Studio Code Install.'",
+                    "$downloadUrl = '{{DownloadUrl}}'",
+                    "$installerFile = 'vscode-install.exe'",
+                    "$installerDownloadPath = (Join-Path $env:TEMP $installerFile)",
+                    "$installerArguments = '/verysilent /mergetasks=!runcode,addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath'",
+                    "Write-Host \"Downloading $downloadUrl to $installerDownloadPath.\"",
+                    "Invoke-Webrequest -Uri $downloadUrl -UseBasicParsing -OutFile $installerDownloadPath",
+                    "Write-Host \"Installing $installerDownloadPath.\"",
+                    "Start-Process $installerDownloadPath -ArgumentList $installerArguments -Wait",
+                    "Write-Host 'Cleanup the downloaded file.'",
+                    "Remove-Item $installerDownloadPath -Force"
+                ]
+            }
+        }
+    ]
+}

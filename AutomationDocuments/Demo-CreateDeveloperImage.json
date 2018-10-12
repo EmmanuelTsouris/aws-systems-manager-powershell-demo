@@ -1,6 +1,6 @@
 {
     "schemaVersion": "0.3",
-    "description": "Builds a Microsoft Windows Server 2016 AMI with developer applications preinstalled.",
+    "description": "Creates a new Microsoft Windows Server 2016 AMI with Visual Studio Code preinstalled.",
     "parameters": {
         "ImageName": {
             "type": "String",
