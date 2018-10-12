@@ -2,6 +2,10 @@
 # Sample Code to Install-VSCode
 # This is the code we'll use in the run command document to install Visual Studio Code
 
+# This will prevent the Invoke-WebRequest from failing on some version of Windows Server
+# https://stackoverflow.com/questions/25143946/powershell-3-0-invoke-webrequest-https-fails-on-all-requests/25163476#25163476
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 # This id the download url for the 64bit System Setup,
 # you can find the download link on the vscode website.
 $downloadUrl = "https://go.microsoft.com/fwlink/?Linkid=852157"
