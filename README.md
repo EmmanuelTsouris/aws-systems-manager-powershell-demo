@@ -5,7 +5,7 @@ This demo will create the following resources in your AWS Account:
 
 Two AWS Systems Manager RunCommand Documents:
 - Install-VisualStudioCode: Downloads and silently installs Visual Studio Code.
-- Install-SQLManagementStudio: Downloads and silently installs SQL Management Studio.
+- Install-SQLManagementStudio: Downloads and silently installs SQL Management Studio (SSMS) 17.9.
 
 Two AWS Systems Manager Automation Documents:
 - Demo-CreateDeveloperImage: Creates a new Windows Server 2016 Image with Visual Studio Code installed.
