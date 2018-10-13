@@ -181,7 +181,7 @@
         {
             "name": "StopInstance",
             "action": "aws:changeInstanceState",
-            "onFailure": "Continue",
+            "onFailure": "Abort",
             "inputs": {
                 "InstanceIds": "{{LaunchInstance.InstanceIds}}",
                 "DesiredState": "stopped"
@@ -338,11 +338,11 @@
                 "Tags": [
                     {
                         "Key": "Role",
-                        "Value": "Developer"
+                        "Value": "SQLDeveloper"
                     },
                     {
                         "Key": "Department",
-                        "Value": "DevOps"
+                        "Value": "SQLDev"
                     },
                     {
                         "Key": "AutoExecId",

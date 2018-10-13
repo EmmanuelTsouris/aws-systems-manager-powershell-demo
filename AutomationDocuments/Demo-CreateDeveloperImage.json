@@ -135,7 +135,7 @@
         {
             "name": "StopInstance",
             "action": "aws:changeInstanceState",
-            "onFailure": "Continue",
+            "onFailure": "Abort",
             "inputs": {
                 "InstanceIds": "{{LaunchInstance.InstanceIds}}",
                 "DesiredState": "stopped"
