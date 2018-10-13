@@ -10,7 +10,7 @@ $dateSuffix = Get-Date -UFormat "%Y.%m.%d-%H.%M.%S"
 $devImageParams = @{'ImageName' = "Windows_Server-2016-Developer-$dateSuffix"}
 $sqlImageParams = @{'ImageName' = "Windows_Server-2016-SQLDeveloper-$dateSuffix"}
 
-# Kick off the automation and pass the parameter we defined above.
+# Kick off the automation and pass the parameters we defined above.
 $developerImageExecId = Start-SSMAutomationExecution -DocumentName "Demo-CreateDeveloperImage" -Parameter $devImageParams
 $sqlDevImageExecId = Start-SSMAutomationExecution -DocumentName "Demo-CreateSqlDevImage" -Parameter $sqlImageParams
 
