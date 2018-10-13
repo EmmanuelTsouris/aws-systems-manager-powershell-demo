@@ -1,0 +1,39 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Install-SQLManagementStudio",
+    "parameters": {
+        "DownloadUrl": {
+            "type": "String",
+            "description": "(Optional) Download URL for the SQL Management Studio installer.",
+            "default": "https://go.microsoft.com/fwlink/?linkid=2014306"
+        }
+    },
+    "mainSteps": [
+        {
+            "name": "InstallSQLManagementStudio",
+            "action": "aws:runPowerShellScript",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Windows"
+                ]
+            },
+            "inputs": {
+                "timeoutSeconds": 1800,
+                "runCommand": [
+                    "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12",
+                    "$downloadUrl = '{{DownloadUrl}}'",
+                    "$installerFile = 'SSMS-Setup-ENU.exe'",
+                    "$installerDownloadPath = (Join-Path $env:TEMP $installerFile)",
+                    "$installerArguments = '/install /quiet /passive /norestart'",
+                    "Write-Host \"Downloading $downloadUrl to $installerFile.\"",
+                    "Invoke-Webrequest $downloadUrl -UseBasicParsing -OutFile $installerDownloadPath",
+                    "Write-Host \"Installing $installerDownloadPath.\"",
+                    "Start-Process $installerDownloadPath -ArgumentList $installerArguments -Wait",
+                    "Write-Host \"Cleanup the downloaded file.\"",
+                    "Remove-Item $installerDownloadPath -Force"
+                ]
+            }
+        }
+    ]
+}
