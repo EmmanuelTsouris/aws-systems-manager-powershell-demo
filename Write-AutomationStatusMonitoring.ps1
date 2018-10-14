@@ -19,8 +19,8 @@ Write-CWERule -Name 'Demo-AutomationStatusMonitorRule' -Description 'A Demo Even
 
 # The Input Paths Map which contains the properties to pull from the JSON message
 $inputPathsMap = New-Object 'System.Collections.Generic.Dictionary[[System.String],[System.String]]'
-$inputPathsMap.Add("definition", "$.detail.definition")
-$inputPathsMap.Add("status", "$.detail.status")
+$inputPathsMap.Add("definition", "$.detail.Definition")
+$inputPathsMap.Add("status", "$.detail.Status")
 
 # The Input Transformer will transform the JSON properties from the Input Paths Map into a formatted message.
 $inputTransformer = New-Object Amazon.CloudWatchEvents.Model.InputTransformer
