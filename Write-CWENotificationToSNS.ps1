@@ -44,4 +44,4 @@ $target.InputTransformer = $inputTransformer
 $target.Id = "Id1234567890"
 
 # Write the target to the rule
-Write-CWETarget -Rule 'DemoAutomationStepEvent' -Target $target
+Write-CWETarget -Rule 'Demo-AutomationStepMonitorRule' -Target $target
