@@ -12,7 +12,10 @@ $assumeRolePolicy = @"
     "Statement": {
         "Effect": "Allow",
         "Principal": {
-            "Service": "ssm.amazonaws.com"
+            "Service": [
+                "ec2.amazonaws.com",
+                "ssm.amazonaws.com"
+            ]
         },
         "Action": "sts:AssumeRole"
     }
