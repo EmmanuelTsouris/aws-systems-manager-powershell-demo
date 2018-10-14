@@ -25,7 +25,7 @@ Publish-SNSMessage -TopicArn $snsTopic -Message 'This is a test!'
 $eventPattern = '{"source":["aws.ssm"],"detail-type":["EC2 Automation Step Status-change Notification"]}'
 
 # Create the CloudWatch Event Rule
-Write-CWERule -Name 'DemoAutomationStepEvent' -Description 'A Demo Event when a step status changes' -State ENABLED -EventPattern $eventPattern
+Write-CWERule -Name 'Demo-AutomationStepMonitorRule' -Description 'A Demo Event when a step status changes' -State ENABLED -EventPattern $eventPattern
 
 # The Input Paths Map which contains the properties to pull from the JSON message
 $inputPathsMap = New-Object 'System.Collections.Generic.Dictionary[[System.String],[System.String]]'
