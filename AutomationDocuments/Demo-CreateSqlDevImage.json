@@ -157,6 +157,26 @@
             }
         },
         {
+            "name": "StopInstanceForReboot",
+            "action": "aws:changeInstanceState",
+            "inputs": {
+                "InstanceIds": [
+                    "{{LaunchInstance.InstanceIds}}"
+                ],
+                "DesiredState": "stopped"
+            }
+        },
+        {
+            "name": "StartInstance",
+            "action": "aws:changeInstanceState",
+            "inputs": {
+                "InstanceIds": [
+                    "{{LaunchInstance.InstanceIds}}"
+                ],
+                "DesiredState": "running"
+            }
+        },
+        {
             "name": "StartSysprepGeneralize",
             "action": "aws:runCommand",
             "maxAttempts": 3,
