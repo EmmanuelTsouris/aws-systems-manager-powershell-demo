@@ -299,7 +299,7 @@
                         "Value": "DevOps"
                     },
                     {
-                        "Key": "AutoExecId",
+                        "Key": "AutomationExecutionId",
                         "Value": "{{automation:EXECUTION_ID}}"
                     }
                 ]

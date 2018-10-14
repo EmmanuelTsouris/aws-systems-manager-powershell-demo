@@ -345,7 +345,7 @@
                         "Value": "SQLDev"
                     },
                     {
-                        "Key": "AutoExecId",
+                        "Key": "AutomationExecutionId",
                         "Value": "{{automation:EXECUTION_ID}}"
                     }
                 ]
