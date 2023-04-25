@@ -23,7 +23,7 @@ $assumeRolePolicy = @"
 "@
 
 # Create the role and apply the assume role policy json
-$role = New-IAMRole -RoleName "DemoSSMRole" -AssumeRolePolicyDocument $assumeRolePolicy
+$role = New-IAMRole -RoleName "AutomationRole" -AssumeRolePolicyDocument $assumeRolePolicy
 
 # Add the AmazonEC2RoleforSSM managed policy.
 Register-IAMRolePolicy -RoleName $role.RoleName -PolicyArn 'arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM'
@@ -32,7 +32,7 @@ Register-IAMRolePolicy -RoleName $role.RoleName -PolicyArn 'arn:aws:iam::aws:pol
 Register-IAMRolePolicy -RoleName $role.RoleName -PolicyArn 'arn:aws:iam::aws:policy/CloudWatchFullAccess'
 
 # Create an instance profile that can be attached to an Amazon EC2 instance
-$instanceProfile = New-IAMInstanceProfile -InstanceProfileName "DemoSSMInstanceProfile"
+$instanceProfile = New-IAMInstanceProfile -InstanceProfileName "AutomationInstanceProfile"
 
 # Finally, add the role to the instance profile
 Add-IAMRoleToInstanceProfile -InstanceProfileName $instanceProfile.InstanceProfileName -RoleName $role.RoleName

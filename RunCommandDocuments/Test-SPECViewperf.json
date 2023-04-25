@@ -1,0 +1,32 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Test-SPECViewperf",
+    "parameters": {
+        "TestName": {
+            "type": "String",
+            "description": "(Required) Name of the SPECViewperf test to run, default is 3dsmax-04.",
+            "default": "3dsmax-04",
+            "maxChars": 256
+        }
+    },
+    "mainSteps": [
+        {
+            "name": "TestSPECViewperf",
+            "action": "aws:runPowerShellScript",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Windows"
+                ]
+            },
+            "inputs": {
+                "timeoutSeconds": 300,
+                "runCommand": [
+                    "Import-Module SPECViewperf",
+                    "$result = Start-SPECViewperf -SPECViewperfTest {{TestName}} -EvaluateResult",
+                    "$result | ConvertTo-Json"
+                ]
+            }
+        }
+    ]
+}

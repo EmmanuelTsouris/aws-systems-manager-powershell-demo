@@ -1,0 +1,29 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Set-NVIDIAGRIDRegistry",
+    "parameters": {
+    },
+    "mainSteps": [
+        {
+            "name": "SetNVIDIAGRIDRegistry",
+            "action": "aws:runPowerShellScript",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Windows"
+                ]
+            },
+            "inputs": {
+                "timeoutSeconds": 300,
+                "runCommand": [
+                    "Write-Verbose 'Creating the GridLicensing key in HKLM:\\SOFTWARE\\NVIDIA Corporation\\Global.'",
+                    "$null = New-Item -Path 'HKLM:\\SOFTWARE\\NVIDIA Corporation\\Global' -Name 'GridLicensing' -Force",
+                    "Write-Verbose 'Setting GridLicensing FeatureType to 2 in order to enable GRID vWS licensing.'",
+                    "$null = New-ItemProperty -path 'HKLM:\\SOFTWARE\\NVIDIA Corporation\\Global\\GridLicensing' -Name 'FeatureType' -Value 2 -PropertyType DWord -Force",
+                    "Write-Verbose 'Setting GridLicensing NvCplDisableManageLicensePage to 1 in order to hide the NVIDIA control panel licensing page.'",
+                    "$null = New-ItemProperty -path 'HKLM:\\SOFTWARE\\NVIDIA Corporation\\Global\\GridLicensing' -Name 'NvCplDisableManageLicensePage' -Value 1 -PropertyType DWord -Force"
+                ]
+            }
+        }
+    ]
+}

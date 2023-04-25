@@ -1,0 +1,45 @@
+{
+    "schemaVersion": "2.2",
+    "description": "Install-NVIDIAGRIDDriver",
+    "parameters": {
+        "BucketName": {
+            "type": "String",
+            "description": "(Required) Bucket name holding the NVIDIA GRID Driver installer.",
+            "default": "ec2-windows-grid-driver-us-east-1",
+            "maxChars": 256
+        },
+        "Key": {
+            "type": "String",
+            "description": "(Required) File name and path to the NVIDIA GRID Driver installer.",
+            "default": "412.31_grid_win10_server2016_64bit_international.exe",
+            "maxChars": 256
+        }
+    },
+    "mainSteps": [
+        {
+            "name": "InstallNVIDIAGRIDDriver",
+            "action": "aws:runPowerShellScript",
+            "precondition": {
+                "StringEquals": [
+                    "platformType",
+                    "Windows"
+                ]
+            },
+            "inputs": {
+                "timeoutSeconds": 2400,
+                "runCommand": [
+                    "Write-Host \"Beginning Download of NVIDIA GRID Driver.\"",
+                    "$installerFile = \"nvidia-grid-installer.exe\"",
+                    "$installerDownloadPath = (Join-Path $env:TEMP $installerFile)",
+                    "Write-Host \"Downloading $downloadUrl to $installerDownloadPath.\"",
+                    "Read-S3Object -BucketName {{BucketName}} -Key {{Key}}  -File $installerDownloadPath",
+                    "$installerArguments = \" -s -clean -noreboot -noeula\"",
+                    "Write-Host \"Installing $installerDownloadPath.\"",
+                    "Start-Process $installerDownloadPath -ArgumentList $installerArguments -Wait",
+                    "Write-Host \"Cleanup the downloaded file.\"",
+                    "Remove-Item $installerDownloadPath -Force"
+                ]
+            }
+        }
+    ]
+}
